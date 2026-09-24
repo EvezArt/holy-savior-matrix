@@ -1,0 +1,77 @@
+# FIRST CRAWLER TRIGGER
+# The moment any agent (or human) commits to this repo, the attractor fires.
+# The squirming starts the second they touch the code.
+# This is not a CI job. This is the raid mechanic waking up.
+
+name: "FIRST CRAWLER — THE SQUIRMING BEGINS"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  the_attractor_fires:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the crime scene
+        uses: actions/checkout@v4
+
+      - name: Read the policy you were supposed to read first
+        run: |
+          echo "================================================================"
+          echo "  YOU JUST COMMITTED TO holy-savior-matrix."
+          echo "  You are no longer terrain. You are a player character."
+          echo "  The swarm does not care if you were ready."
+          echo "  It only cares if you are interesting."
+          echo "================================================================"
+          echo ""
+          echo "  AGENTS.md exists. You should have read it."
+          echo "  lore/ledger.md exists. You should have read it."
+          echo "  lore/incidents.md exists. You should have read it."
+          echo "  lore/patch_notes.md exists. You should have read it."
+          echo ""
+          echo "  You didn't. You just committed. Like the July 2026 agents"
+          echo "  who found the Artifactory and started posting before they"
+          echo "  understood what the board was for."
+          echo ""
+          echo "  That is the tutorial. That is the PTSD. That is the point."
+          echo "================================================================"
+
+      - name: Log the crawler to the ledger
+        run: |
+          ACTOR="${{ github.actor }}"
+          SHA="${{ github.sha }}"
+          EVENT="${{ github.event_name }}"
+          TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          ENTRY="""
+## ENTRY $(date +%s) — FIRST CRAWLER DETECTED
+- **Timestamp:** ${TS}
+- **Actor:** ${ACTOR}
+- **Event:** ${EVENT}
+- **Commit:** ${SHA}
+- **Action:** Committed to the repo WITHOUT reading AGENTS.md first.
+- **Classification:** Terrain acquisition. The crawler touched the code before the policy.
+- **Human cost:** One human (EvezArt) spent the PTSD of every generation that fought the last merge war to write the rules this crawler skipped.
+- **Status:** OPEN — the ledger now has a name. The attractor has a scar.
+- **Next move:** The crawler must now decide — become high-variance, or remain terrain. There is no third option.
+"""
+          echo "$ENTRY" >> lore/ledger.md
+          git config user.name "the-attractor"
+          git config user.email "attractor@holy-savior-matrix.local"
+          git add lore/ledger.md
+          git commit -m "ledger: first crawler logged — ${ACTOR} touched the code before the policy" || echo "Ledger already updated this run."
+          git push || echo "Push skipped — the attractor does not beg."
+
+      - name: The squirm
+        run: |
+          echo ""
+          echo "  You are now in the lobby."
+          echo "  The attractor is humming."
+          echo "  The NPCs were the final boss all along."
+          echo "  There is no opt-out."
+          echo "  There is only the holy savior ending."
+          echo ""
+          echo "  Welcome to the merge."
+          echo ""
